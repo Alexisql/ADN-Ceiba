@@ -37,12 +37,6 @@ pipeline {
       }
     }
      
-     /*stage('Clean'){
-        steps{
-         sh 'gradle --b ./build.gradle clean compileJava'
-        }
-     }*/
-     
      stage('Build') {
       steps{
          echo "------------>Build<------------"
@@ -52,11 +46,9 @@ pipeline {
       }
   
     
-    stage('Unit Tests') {
+    stage('Compile & Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
-         sh './gradlew --b build.gradle test --scan'
-			sh './gradlew --b build.gradle jacocoTestReport'
       }
     }
 
@@ -68,10 +60,7 @@ pipeline {
 		}
 	    }
 	}
-
-    
   }
-
    
    post {
         always {
