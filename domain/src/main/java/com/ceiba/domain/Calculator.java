@@ -4,6 +4,9 @@ import java.util.Calendar;
 
 public class Calculator {
 
+    private Calculator(){
+    }
+
     public static int calculateHoursInparking(Calendar dateEntry, Calendar dateExit) {
         float hourInMilliseconds = 3600000;
         long differenceDates = dateExit.getTimeInMillis() - dateEntry.getTimeInMillis();
