@@ -7,17 +7,13 @@ import com.ceiba.domain.repository.CarRepository;
 import com.ceiba.domain.repository.MotorcycleRepository;
 import com.ceiba.domain.service.ParkingService;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.when;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import static org.junit.Assert.*;
 
@@ -26,7 +22,6 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-@RunWith(MockitoJUnitRunner.class)
 public class ExampleUnitTest {
 
     @Mock
@@ -60,7 +55,7 @@ public class ExampleUnitTest {
         //Act
         expectedResult = parkingService.validatePlate(plate, dayMonday);
         //Asset
-        assertTrue(true);
+        assertTrue(expectedResult);
     }
 
     @Test
@@ -82,7 +77,7 @@ public class ExampleUnitTest {
     public void saveMotorcycleNoQuota() {
         //Arrange
         Motorcycle motorcycle = new Motorcycle("AQW-5D5", "motorcycle", (short) 9650);
-        when(carRepository.getCountCars()).thenReturn((byte) 10);
+        when(motorcycleRepository.getCountMotorcycle()).thenReturn((byte) 10);
         String exceptionMsj = "No hay cupo disponible";
         //Act
         try {
