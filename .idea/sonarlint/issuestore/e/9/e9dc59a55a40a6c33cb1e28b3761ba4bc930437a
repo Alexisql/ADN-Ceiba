@@ -1,0 +1,9 @@
+
+_
+java:S2184W"BCast one of the operands of this division operation to a "double".(îÖ”Ã8ãî¦/
+_
+java:S2184r"BCast one of the operands of this division operation to a "double".(îÖ”Ã8«±ú¦/
+C
+java:S2185r"&Remove this silly call to "Math.floor"(îÖ”Ã8«±ú¦/
+C
+java:S2185W"&Remove this silly call to "Math.floor"(îÖ”Ã8ãî¦/
