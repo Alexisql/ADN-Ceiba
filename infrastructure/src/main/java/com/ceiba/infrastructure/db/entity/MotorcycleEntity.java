@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
 
 @Entity(tableName = "motorcycle_entity")
 public class MotorcycleEntity {
@@ -20,7 +19,7 @@ public class MotorcycleEntity {
     public String type;
 
     @ColumnInfo(name = "dateEntry")
-    public Date dateEntry;
+    public String dateEntry;
 
     @ColumnInfo(name = "cylinder")
     public int cylinder;

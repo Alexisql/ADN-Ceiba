@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
 
 @Entity(tableName = "car_entity")
 public class CarEntity{
@@ -20,7 +19,7 @@ public class CarEntity{
     public String type;
 
     @ColumnInfo(name = "dateEntry")
-    public Date dateEntry;
+    public String dateEntry;
 
     public void setPlate(String plate) {
         this.plate = plate;
@@ -30,7 +29,7 @@ public class CarEntity{
         this.type = type;
     }
 
-    public void setDateEntry(Date dateEntry) {
+    public void setDateEntry(String dateEntry) {
         this.dateEntry = dateEntry;
     }
 }
