@@ -34,7 +34,7 @@ public class Vehicle {
         return fechaIngreso;
     }
 
-    private void setFechaIngreso(Calendar fechaIngreso) {
+    public void setFechaIngreso(Calendar fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 }
