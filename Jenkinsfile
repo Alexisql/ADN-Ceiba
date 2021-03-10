@@ -37,17 +37,17 @@ pipeline {
       }
     }*/  
 	  
-    stage('Clean'){
+    /*stage('Clean'){
         steps{
          sh './gradlew --b build.gradle clean compileJava'
         }
-     }
+     }*/
 	  
     stage('Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
 	 sh './gradlew --b build.gradle test --scan'
-	 sh './gradlew --b build.gradle jacocoTestReport'
+	 /*sh './gradlew --b build.gradle jacocoTestReport'*/
       }
     }
 	  
