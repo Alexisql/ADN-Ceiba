@@ -39,14 +39,15 @@ pipeline {
 	  
     stage('Clean'){
         steps{
-         sh 'gradle --b ./build.gradle clean compileJava'
+         sh './gradlew --b build.gradle clean compileJava'
         }
      }
 	  
     stage('Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
-	 sh 'gradle --b ./build.gradle test'
+	 sh './gradlew --b build.gradle test --scan'
+	 sh './gradlew --b build.gradle jacocoTestReport'
       }
     }
 	  
@@ -54,7 +55,7 @@ pipeline {
       steps{
          echo "------------>Build<------------"
             //Construir sin tarea test que se ejecutó previamente
-	    sh 'gradle --b ./build.gradle build -x test'
+	    sh './gradlew --b build.gradle build -x test'
         }
      }
 
