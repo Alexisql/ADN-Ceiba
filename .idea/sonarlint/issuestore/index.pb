@@ -9,8 +9,6 @@ l
 <domain/src/main/java/com/ceiba/domain/entity/Motorcycle.java,0/7/07e3019451591372babfcaa6791f46e3789d2e7b
 C
 domain/build.gradle,a/3/a3021bb5ba623a461b5fdb89ae51923a4945c354
-j
-:domain/src/test/java/com/ceiba/domain/ExampleUnitTest.java,4/9/491f58e46076dd7c7f9a8504ecc38e8fa0916868
 d
 4domain/src/main/java/com/ceiba/domain/Constants.java,1/a/1a6922679ab0328859c93d7fecaf0fbaab55ce85
 q
