@@ -18,12 +18,12 @@ pipeline {
    
    //Aquí comienzan los “items” del Pipeline
   stages{
-    stage('Checkout') {
+    /*stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
          checkout([
             $class: 'GitSCM', 
-            branches: [[name: '*/master']], 
+            branches: [[name: '*//*master']], 
             doGenerateSubmoduleConfigurations: false, 
             extensions: [], 
             gitTool: 'Default', 
@@ -35,22 +35,28 @@ pipeline {
          ])
 
       }
+    }*/  
+	  
+    stage('Clean'){
+        steps{
+         sh 'gradle --b ./build.gradle clean compileJava'
+        }
+     }
+	  
+    stage('Unit Tests') {
+      steps{
+        echo "------------>Unit Tests<------------"
+	 sh 'gradle --b ./build.gradle test'
+      }
     }
-     
-     stage('Build') {
+	  
+    stage('Build') {
       steps{
          echo "------------>Build<------------"
             //Construir sin tarea test que se ejecutó previamente
-            sh './gradlew clean build'
-         }
-      }
-  
-    
-    stage('Compile & Unit Tests') {
-      steps{
-        echo "------------>Unit Tests<------------"
-      }
-    }
+	    sh 'gradle --b ./build.gradle build -x test'
+        }
+     }
 
     stage('Static Code Analysis') {
 	    steps{
