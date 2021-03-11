@@ -1,7 +1,5 @@
 package com.ceiba.dominio.servicio;
 
-import com.ceiba.dominio.Calculator;
-import com.ceiba.dominio.Constants;
 import com.ceiba.dominio.entidad.Carro;
 import com.ceiba.dominio.entidad.Moto;
 import com.ceiba.dominio.entidad.Vehiculo;
@@ -20,6 +18,8 @@ public class ServicioParqueadero {
 
     private CarroRepositorio carroRepositorio;
     private MotoRepositorio motoRepositorio;
+    private final String LETRA_INICIAL_PLACA = "A";
+    private final int DIA_DE_PARQUEO = 3;
 
     @Inject
     public ServicioParqueadero(CarroRepositorio carroRepositorio, MotoRepositorio motoRepositorio) {
@@ -38,7 +38,7 @@ public class ServicioParqueadero {
     public void guardarCarro(Carro carro) {
         byte cantidadCarros = carroRepositorio.obtenerCantidadCarros();
         int diaActual = Calendar.getInstance().getFirstDayOfWeek();
-        if (cantidadCarros == 20) {
+        if (cantidadCarros == carro.CANTIDAD_MAXIMA_EN_PARQUEADERO) {
             throw new SinCupoExcepcion();
         } else if (validarPlaca(carro.getPlaca(), diaActual)) {
             throw new PlacaNoPermitidaExcepcion();
@@ -50,7 +50,7 @@ public class ServicioParqueadero {
     public void guardarMoto(Moto moto) {
         byte cantidadMotos = motoRepositorio.obtenerCantidadMotos();
         int diaActual = Calendar.getInstance().getFirstDayOfWeek();
-        if (cantidadMotos == 10) {
+        if (cantidadMotos == moto.CANTIDAD_MAXIMA_EN_PARQUEADERO) {
             throw new SinCupoExcepcion();
         } else if (validarPlaca(moto.getPlaca(), diaActual)) {
             throw new PlacaNoPermitidaExcepcion();
@@ -68,23 +68,14 @@ public class ServicioParqueadero {
     }
 
     public boolean validarPlaca(String placa, int diaActual) {
-        return (placa.startsWith("A") && (diaActual < 3));
+        return (placa.startsWith(LETRA_INICIAL_PLACA) && (diaActual < DIA_DE_PARQUEO));
     }
 
-    public int valorTotalParqueaderoMoto(Moto moto) {
-        Calendar fechaIngreso = moto.getFechaIngreso();
-        Calendar fechaSalida = Calendar.getInstance();
-        int valorTotal = Calculator.valorSubTotalDeParqueadero(fechaIngreso, fechaSalida, moto.getTipo());
-        if (moto.getCilindraje() > Constants.CYLINDER_MOTORCYCLE) {
-            valorTotal += Constants.EXEDENT_MOTORCYCLE;
-        }
-        return valorTotal;
+    public int calcularValorTotalPagarMoto(Moto moto) {
+        return moto.calcularValorTotalDeParqueadero(Calendar.getInstance());
     }
 
-    public int valorTotalParqueaderoCarro(Carro carro) {
-        Calendar fechaIngreso = carro.getFechaIngreso();
-        Calendar fechaSalida = Calendar.getInstance();
-        return Calculator.valorSubTotalDeParqueadero(fechaIngreso, fechaSalida, carro.getTipo());
+    public int calcularValorTotalPagarCarro(Carro carro) {
+        return carro.calcularValorTotalDeParqueadero(Calendar.getInstance());
     }
-
 }

@@ -43,8 +43,8 @@ public class ServicioParqueaderoUnitTest {
         motoRepositorio = Mockito.mock(MotoRepositorio.class);
         //parkingService = Mockito.mock(ParkingService.class);
         servicioParqueadero = new ServicioParqueadero(carroRepositorio, motoRepositorio);
-        carro = new Carro("AQW-5R4", "car");
-        moto = new Moto("AQW-5R4", "motorcycle", (short) 650);
+        carro = new Carro("AQW-5R4");
+        moto = new Moto("AQW-5R4", 650);
         excepcionMensaje = "No hay cupo disponible";
     }
 

@@ -24,7 +24,6 @@ public class CarroTraductor {
     public static CarroEntidad pasarCarroDominioACarroBD(Carro carro) {
         CarroEntidad carroEntidad = new CarroEntidad();
         carroEntidad.setPlaca(carro.getPlaca());
-        carroEntidad.setTipo(carro.getTipo());
         carroEntidad.setFechaIngreso(carro.getFechaIngreso().toString());
         return carroEntidad;
     }
