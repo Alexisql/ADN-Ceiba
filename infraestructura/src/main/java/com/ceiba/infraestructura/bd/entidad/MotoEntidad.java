@@ -20,4 +20,16 @@ public class MotoEntidad {
 
     @ColumnInfo(name = "cilindraje")
     public int cilindraje;
+
+    public void modificarPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public void modificarFechaIngreso(String fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public void modificarCilindraje(int cilindraje) {
+        this.cilindraje = cilindraje;
+    }
 }

@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-
 public class CarroTraductor {
 
     public static Carro pasarCarroBDaCarroDominio(CarroEntidad carroEntidad) throws ParseException {
         Carro carro = new Carro(carroEntidad.placa);
         Calendar fechaIngreso = Calendar.getInstance();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-        fechaIngreso.setTime(formatoFecha.parse(String.valueOf(fechaIngreso)));
+        fechaIngreso.setTime(formatoFecha.parse(String.valueOf(carroEntidad.fechaIngreso)));
         carro.modificarFechaIngreso(fechaIngreso);
         return carro;
     }
