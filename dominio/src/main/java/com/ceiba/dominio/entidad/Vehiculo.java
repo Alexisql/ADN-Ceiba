@@ -11,28 +11,28 @@ public class Vehiculo {
     protected final int CANTIDAD_HORAS_DIA = 24;
 
     public Vehiculo(String placa) {
-        setPlaca(placa);
-        setFechaIngreso(Calendar.getInstance());
+        modificarPlaca(placa);
+        modificarFechaIngreso(Calendar.getInstance());
     }
 
-    public String getPlaca() {
+    public String obtenerPlaca() {
         return placa;
     }
 
-    private void setPlaca(String placa) {
+    private void modificarPlaca(String placa) {
         this.placa = placa;
     }
 
-    public Calendar getFechaIngreso() {
+    public Calendar obtenerFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Calendar fechaIngreso) {
+    public void modificarFechaIngreso(Calendar fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
     public int calcularTotalHorasEnParqueadero(Calendar fechaSalida) {
-        long diferenciaEntreFechas = fechaSalida.getTimeInMillis() - getFechaIngreso().getTimeInMillis();
+        long diferenciaEntreFechas = fechaSalida.getTimeInMillis() - obtenerFechaIngreso().getTimeInMillis();
         return (int) Math.ceil(diferenciaEntreFechas / HORA_EN_MILISEGUNDOS);
     }
 

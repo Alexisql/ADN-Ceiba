@@ -26,26 +26,25 @@ import static org.junit.Assert.*;
 public class ServicioParqueaderoUnitTest {
 
     @Mock
-    CarroRepositorio carroRepositorio;
+    private CarroRepositorio carroRepositorio;
 
     @Mock
-    MotoRepositorio motoRepositorio;
+    private MotoRepositorio motoRepositorio;
 
-    ServicioParqueadero servicioParqueadero;
+    private ServicioParqueadero servicioParqueadero;
 
-    Carro carro;
-    Moto moto;
-    String excepcionMensaje;
+    private Carro carro;
+    private Moto moto;
+    private String excepcionSinCupoMensaje;
 
     @Before
     public void inicializarVariables() {
         carroRepositorio = Mockito.mock(CarroRepositorio.class);
         motoRepositorio = Mockito.mock(MotoRepositorio.class);
-        //parkingService = Mockito.mock(ParkingService.class);
         servicioParqueadero = new ServicioParqueadero(carroRepositorio, motoRepositorio);
         carro = new Carro("AQW-5R4");
         moto = new Moto("AQW-5R4", 650);
-        excepcionMensaje = "No hay cupo disponible";
+        excepcionSinCupoMensaje = "No hay cupo disponible";
     }
 
 
@@ -77,28 +76,28 @@ public class ServicioParqueaderoUnitTest {
     @Test
     public void guardarCarro_sinCupoParaIngresar_exitoso() {
         //Arrange
-        when(carroRepositorio.obtenerCantidadCarros()).thenReturn((byte) 20);
+        when(carroRepositorio.obtenerCantidadCarros()).thenReturn((byte) carro.CANTIDAD_MAXIMA_EN_PARQUEADERO);
         //Act
         try {
             servicioParqueadero.guardarCarro(carro);
             fail();
         } catch (SinCupoExcepcion exception) {
             //Assert
-            assertEquals(excepcionMensaje, exception.getMessage());
+            assertEquals(excepcionSinCupoMensaje, exception.getMessage());
         }
     }
 
     @Test
     public void guardarMoto_sinCupoParaIngresar_exitoso() {
         //Arrange
-        when(motoRepositorio.obtenerCantidadMotos()).thenReturn((byte) 10);
+        when(motoRepositorio.obtenerCantidadMotos()).thenReturn((byte) moto.CANTIDAD_MAXIMA_EN_PARQUEADERO);
         //Act
         try {
             servicioParqueadero.guardarMoto(moto);
             fail();
         } catch (SinCupoExcepcion exception) {
             //Assert
-            assertEquals(excepcionMensaje, exception.getMessage());
+            assertEquals(excepcionSinCupoMensaje, exception.getMessage());
         }
     }
 

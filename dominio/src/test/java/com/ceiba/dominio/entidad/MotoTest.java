@@ -34,7 +34,7 @@ public class MotoTest {
     public void calcularValorTotalDeParqueadero_motoCon5HorasDeParqueoCilindraje650_exitoso() {
         //Arrange
         Moto moto = new Moto("ASW-KJ8", 650);
-        moto.setFechaIngreso(fechaIngreso);
+        moto.modificarFechaIngreso(fechaIngreso);
         //Act
         int subTotal = moto.calcularValorTotalDeParqueadero(fechaSalida);
         //Assert

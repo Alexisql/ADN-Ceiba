@@ -15,21 +15,14 @@ public class CarroEntidad {
     @ColumnInfo(name = "placa")
     public String placa;
 
-    @ColumnInfo(name = "tipo")
-    public String tipo;
-
     @ColumnInfo(name = "fechaIngreso")
     public String fechaIngreso;
 
-    public void setPlaca(String placa) {
+    public void modificarPlaca(String placa) {
         this.placa = placa;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setFechaIngreso(String fechaIngreso) {
+    public void modificarFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 }

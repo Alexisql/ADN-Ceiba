@@ -34,7 +34,7 @@ public class VehiculoTest {
     public void calcularTotalHorasEnParqueadero_diferancia5Horas_exitoso() {
         //Arrange
         Vehiculo vehiculo = new Vehiculo("AQS-JU8");
-        vehiculo.setFechaIngreso(fechaIngreso);
+        vehiculo.modificarFechaIngreso(fechaIngreso);
         //Act
         int totalHoras = vehiculo.calcularTotalHorasEnParqueadero(fechaSalida);
         //Assert

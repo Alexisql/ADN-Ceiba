@@ -13,18 +13,18 @@ import java.util.List;
 public class CarroTraductor {
 
     public static Carro pasarCarroBDaCarroDominio(CarroEntidad carroEntidad) throws ParseException {
-        Carro carro = new Carro(carroEntidad.placa, carroEntidad.tipo);
+        Carro carro = new Carro(carroEntidad.placa);
         Calendar fechaIngreso = Calendar.getInstance();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         fechaIngreso.setTime(formatoFecha.parse(String.valueOf(fechaIngreso)));
-        carro.setFechaIngreso(fechaIngreso);
+        carro.modificarFechaIngreso(fechaIngreso);
         return carro;
     }
 
     public static CarroEntidad pasarCarroDominioACarroBD(Carro carro) {
         CarroEntidad carroEntidad = new CarroEntidad();
-        carroEntidad.setPlaca(carro.getPlaca());
-        carroEntidad.setFechaIngreso(carro.getFechaIngreso().toString());
+        carroEntidad.modificarPlaca(carro.obtenerPlaca());
+        carroEntidad.modificarFechaIngreso(carro.obtenerFechaIngreso().toString());
         return carroEntidad;
     }
 

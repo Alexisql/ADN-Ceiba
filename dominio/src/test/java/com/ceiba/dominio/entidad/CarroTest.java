@@ -34,7 +34,7 @@ public class CarroTest {
     public void calcularValorTotalDeParqueadero_carroCon5HorasDeParqueo_exitoso() {
         //Arrange
         Carro carro = new Carro("ASW-KJ8");
-        carro.setFechaIngreso(fechaIngreso);
+        carro.modificarFechaIngreso(fechaIngreso);
         //Act
         int subTotal = carro.calcularValorTotalDeParqueadero(fechaSalida);
         //Assert

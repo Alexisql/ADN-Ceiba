@@ -15,9 +15,6 @@ public class MotoEntidad {
     @ColumnInfo(name = "placa")
     public String placa;
 
-    @ColumnInfo(name = "tipo")
-    public String tipo;
-
     @ColumnInfo(name = "fechaIngreso")
     public String fechaIngreso;
 

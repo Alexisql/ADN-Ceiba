@@ -40,7 +40,7 @@ public class ServicioParqueadero {
         int diaActual = Calendar.getInstance().getFirstDayOfWeek();
         if (cantidadCarros == carro.CANTIDAD_MAXIMA_EN_PARQUEADERO) {
             throw new SinCupoExcepcion();
-        } else if (validarPlaca(carro.getPlaca(), diaActual)) {
+        } else if (validarPlaca(carro.obtenerPlaca(), diaActual)) {
             throw new PlacaNoPermitidaExcepcion();
         } else {
             carroRepositorio.guardarCarro(carro);
@@ -52,7 +52,7 @@ public class ServicioParqueadero {
         int diaActual = Calendar.getInstance().getFirstDayOfWeek();
         if (cantidadMotos == moto.CANTIDAD_MAXIMA_EN_PARQUEADERO) {
             throw new SinCupoExcepcion();
-        } else if (validarPlaca(moto.getPlaca(), diaActual)) {
+        } else if (validarPlaca(moto.obtenerPlaca(), diaActual)) {
             throw new PlacaNoPermitidaExcepcion();
         } else {
             motoRepositorio.guardarMoto(moto);

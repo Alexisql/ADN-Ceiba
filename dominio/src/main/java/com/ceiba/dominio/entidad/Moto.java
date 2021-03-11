@@ -13,14 +13,14 @@ public class Moto extends Vehiculo {
 
     public Moto(String placa, int cilindraje) {
         super(placa);
-        setCilindraje(cilindraje);
+        modificarCilindraje(cilindraje);
     }
 
-    public int getCilindraje() {
+    public int obtenerCilindraje() {
         return cilindraje;
     }
 
-    private void setCilindraje(int cilindraje) {
+    private void modificarCilindraje(int cilindraje) {
         this.cilindraje = cilindraje;
     }
 
@@ -42,7 +42,7 @@ public class Moto extends Vehiculo {
                 valorTotalPagar = (int) Math.ceil(totalHorasEnParqueadero / ((float) CANTIDAD_HORAS_DIA)) * VALOR_DIA_PARQUEADERO;
             }
         }
-        if (getCilindraje() > CILINDRAJE_MAXIMO) {
+        if (obtenerCilindraje() > CILINDRAJE_MAXIMO) {
             valorTotalPagar += EXCEDENTE;
         }
         return valorTotalPagar;
