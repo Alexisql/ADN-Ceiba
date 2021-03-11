@@ -1,0 +1,11 @@
+
+L
+java:S1874%"/Remove this use of "execute"; it is deprecated.(ı Á8ïêõç/
+S
+java:S1874E"1Remove this use of "AsyncTask"; it is deprecated.( ´…øÿÿÿÿ8¯Ôè/
+Q
+java:S18741"/Remove this use of "execute"; it is deprecated.(ç’ş»şÿÿÿÿ8Ì´é/
+
+java:S11865"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ü¹çà8âÕä/
+S
+java:S1874>"1Remove this use of "AsyncTask"; it is deprecated.(Ñ«´ùÿÿÿÿ8ıî¼ç/
