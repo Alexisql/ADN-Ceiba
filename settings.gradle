@@ -1,4 +1,4 @@
-include ':infrastructure'
-include ':domain'
-include ':presentation'
+include ':infraestructura'
+include ':dominio'
+include ':presentacion'
 rootProject.name = "ADN"
