@@ -47,3 +47,5 @@ i
 9domain/src/test/java/com/ceiba/domain/CalculatorTest.java,d/a/dac8735976af6c6d85ed57c76650b1804fdd86a6
 ‡
 Winfrastructure/src/main/java/com/ceiba/infrastructure/anticorruption/CarTranslator.java,9/0/90f43529c7138f6d9c366ad0d2d8080360bd0ff8
+H
+sonar-project.properties,2/5/2538046035efb77ecc44e1fd2eec1e2641594d4c
