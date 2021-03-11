@@ -1,11 +1,11 @@
-package com.ceiba.infrastructure.repository;
+package com.ceiba.infraestructura.repositorio;
 
 import com.ceiba.dominio.entidad.Moto;
 import com.ceiba.dominio.repositorio.MotoRepositorio;
 
 import java.util.List;
 
-public class MotoRepositorioDB implements MotoRepositorio {
+public class MotoRepositorioRoom implements MotoRepositorio {
 
 
 
