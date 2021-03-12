@@ -8,6 +8,7 @@ import com.ceiba.dominio.excepcion.SinCupoExcepcion;
 import com.ceiba.dominio.repositorio.CarroRepositorio;
 import com.ceiba.dominio.repositorio.MotoRepositorio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -19,7 +20,8 @@ public class ServicioParqueadero {
     private CarroRepositorio carroRepositorio;
     private MotoRepositorio motoRepositorio;
     private final String LETRA_INICIAL_PLACA = "A";
-    private final int DIA_DE_PARQUEO = 3;
+    private final int DIA_LUNES = 1;
+    private final int DIA_DOMINGO = 7;
 
     @Inject
     public ServicioParqueadero(CarroRepositorio carroRepositorio, MotoRepositorio motoRepositorio) {
@@ -37,7 +39,10 @@ public class ServicioParqueadero {
 
     public void guardarCarro(Carro carro) {
         byte cantidadCarros = carroRepositorio.obtenerCantidadCarros();
-        int diaActual = Calendar.getInstance().getFirstDayOfWeek();
+        int diaActual = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            diaActual = LocalDate.now().getDayOfWeek().getValue();
+        }
         if (cantidadCarros == carro.CANTIDAD_MAXIMA_EN_PARQUEADERO) {
             throw new SinCupoExcepcion();
         } else if (validarPlaca(carro.obtenerPlaca(), diaActual)) {
@@ -68,7 +73,7 @@ public class ServicioParqueadero {
     }
 
     public boolean validarPlaca(String placa, int diaActual) {
-        return (placa.startsWith(LETRA_INICIAL_PLACA) && (diaActual < DIA_DE_PARQUEO));
+        return (placa.startsWith(LETRA_INICIAL_PLACA) && (diaActual == DIA_LUNES || diaActual == DIA_DOMINGO));
     }
 
     public int calcularValorTotalPagarMoto(Moto moto) {
