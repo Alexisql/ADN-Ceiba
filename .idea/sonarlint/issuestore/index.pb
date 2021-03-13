@@ -66,3 +66,9 @@ D
 dominio/build.gradle,d/7/d71e7ab1854167962f7335fc962f525692922e9e
 s
 Cpresentacion/src/main/java/com/ceiba/adn/AplicacionParqueadero.java,6/0/60e116b52a8ed65e113527eccf37a8eaa070183c
+A
+gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
+Y
+)presentacion/src/main/AndroidManifest.xml,0/1/01423137c9ba83b646a644dc875abe54f9098a9e
+€
+Ppresentacion/src/main/java/com/ceiba/adn/modelovista/ParqueaderoModeloVista.java,c/4/c4d296f74b803fb51ba67936c5d51102c5e05d2f
