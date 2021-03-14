@@ -1,5 +1,7 @@
 package com.ceiba.dominio.servicio;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.ceiba.dominio.entidad.Carro;
 import com.ceiba.dominio.entidad.Moto;
 import com.ceiba.dominio.entidad.Vehiculo;
@@ -29,11 +31,13 @@ public class ServicioParqueadero {
         this.motoRepositorio = motoRepositorio;
     }
 
-    public List<Vehiculo> obtenerVehiculos() {
+    public MutableLiveData<List<Vehiculo>> obtenerVehiculos() {
+        MutableLiveData<List<Vehiculo>> listaMutable = new MutableLiveData<>();
         List<Vehiculo> listaVehiculos = new ArrayList<>();
         listaVehiculos.addAll(carroRepositorio.obtenerCarros());
         listaVehiculos.addAll(motoRepositorio.obtenerMotos());
-        return listaVehiculos;
+        listaMutable.setValue(listaVehiculos);
+        return listaMutable;
     }
 
 

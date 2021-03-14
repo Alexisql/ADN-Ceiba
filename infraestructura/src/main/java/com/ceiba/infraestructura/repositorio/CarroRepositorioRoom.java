@@ -35,7 +35,7 @@ public class CarroRepositorioRoom implements CarroRepositorio {
         ObtenerListaCarrosAsincrono obtenerListaCarrosAsincrono = new ObtenerListaCarrosAsincrono();
         try {
             List<CarroEntidad> carrosBD = obtenerListaCarrosAsincrono.execute().get();
-            CarroTraductor.pasarListaCarroDominioAListaCarroBD(carrosBD);
+            listaCarrosDominio.addAll(CarroTraductor.pasarListaCarroBDAListaCarroDominio(carrosBD));
         } catch (Exception excepcion) {
             Log.println(Log.ERROR, CarroRepositorioRoom.class.getName(), excepcion.getMessage());
         }
@@ -45,7 +45,7 @@ public class CarroRepositorioRoom implements CarroRepositorio {
     @Override
     public void guardarCarro(Carro carro) {
         CarroEntidad carroEntidad = CarroTraductor.pasarCarroDominioACarroBD(carro);
-        AdministradorBaseDatos.EJECUTOR_ESCRITURA_BD.execute(()->{
+        AdministradorBaseDatos.EJECUTOR_ESCRITURA_BD.execute(() -> {
             carroDao.guardarCarro(carroEntidad);
         });
     }

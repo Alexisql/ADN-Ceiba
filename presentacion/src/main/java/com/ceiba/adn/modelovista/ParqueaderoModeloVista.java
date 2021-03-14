@@ -19,7 +19,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 
 public class ParqueaderoModeloVista extends ViewModel {
 
-    private MutableLiveData<List<Vehiculo>> vehiculos;
+    public MutableLiveData<List<Vehiculo>> vehiculos;
 
     private ServicioParqueadero servicioParqueadero;
 
@@ -31,12 +31,17 @@ public class ParqueaderoModeloVista extends ViewModel {
     public ParqueaderoModeloVista(ServicioParqueadero servicioParqueadero, @ApplicationContext Context contexto) {
         this.contexto = contexto;
         this.servicioParqueadero = servicioParqueadero;
-        this.vehiculos = new MutableLiveData<>();
         iniciarVariables();
+        obtenerVehiculos();
     }
 
-    public MutableLiveData<List<Vehiculo>> obtenerListaVehiculos() {
-        vehiculos.setValue(servicioParqueadero.obtenerVehiculos());
+    private void obtenerVehiculos() {
+        if (vehiculos == null)
+            this.vehiculos = new MutableLiveData<>();
+        vehiculos = servicioParqueadero.obtenerVehiculos();
+    }
+
+    public MutableLiveData<List<Vehiculo>> obtenerListaVehiculosMutable() {
         return vehiculos;
     }
 

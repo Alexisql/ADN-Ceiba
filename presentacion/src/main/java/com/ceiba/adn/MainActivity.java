@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import com.ceiba.adn.modelovista.ParqueaderoModeloVista;
 import com.ceiba.dominio.entidad.Carro;
+import com.ceiba.dominio.entidad.Vehiculo;
+
+import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -22,10 +25,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         parqueaderoModeloVista = new ViewModelProvider(this).get(ParqueaderoModeloVista.class);
-        Carro carro = new Carro("AXS-VF3");
-        parqueaderoModeloVista.guardarCarro(carro).observe(this, vehiculoGuardado -> {
-            Toast.makeText(this, vehiculoGuardado + carro.obtenerPlaca(), Toast.LENGTH_SHORT).show();
-        });
 
+        for (Vehiculo vehiculo : parqueaderoModeloVista.vehiculos.getValue()) {
+            System.out.println("***************** " + vehiculo.obtenerPlaca() + " *****************");
+        }
+
+        Carro carro = new Carro("ALEXIS");
+        parqueaderoModeloVista.guardarCarro(carro).observe(this, vehiculoGuardado -> {
+            Toast.makeText(getApplicationContext(), vehiculoGuardado + carro.obtenerPlaca(), Toast.LENGTH_SHORT).show();
+        });
     }
 }

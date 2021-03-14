@@ -14,7 +14,7 @@ public class CarroTraductor {
     public static Carro pasarCarroBDaCarroDominio(CarroEntidad carroEntidad) throws ParseException {
         Carro carro = new Carro(carroEntidad.placa);
         Calendar fechaIngreso = Calendar.getInstance();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE MMMM d HH:mm:ss z yyyy");
         fechaIngreso.setTime(formatoFecha.parse(String.valueOf(carroEntidad.fechaIngreso)));
         carro.modificarFechaIngreso(fechaIngreso);
         return carro;
@@ -23,11 +23,11 @@ public class CarroTraductor {
     public static CarroEntidad pasarCarroDominioACarroBD(Carro carro) {
         CarroEntidad carroEntidad = new CarroEntidad();
         carroEntidad.modificarPlaca(carro.obtenerPlaca());
-        carroEntidad.modificarFechaIngreso(carro.obtenerFechaIngreso().toString());
+        carroEntidad.modificarFechaIngreso(carro.obtenerFechaIngreso().getTime().toString());
         return carroEntidad;
     }
 
-    public static List<Carro> pasarListaCarroDominioAListaCarroBD(List<CarroEntidad> listaCarros) throws ParseException {
+    public static List<Carro> pasarListaCarroBDAListaCarroDominio(List<CarroEntidad> listaCarros) throws ParseException {
         List<Carro> listaCarrosTemporal = new ArrayList<>();
         for (CarroEntidad carroEntidad : listaCarros) {
             listaCarrosTemporal.add(pasarCarroBDaCarroDominio(carroEntidad));
