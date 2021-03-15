@@ -35,7 +35,7 @@ public class MotoRepositorioRoom implements MotoRepositorio {
         ObtenerListaMotosAsincrono obtenerListaMotosAsincrono = new ObtenerListaMotosAsincrono();
         try {
             List<MotoEntidad> motosBD = obtenerListaMotosAsincrono.execute().get();
-            MotoTraductor.pasarListaMotoBDAListaMotoDominio(motosBD);
+            listaMotosDominio.addAll(MotoTraductor.pasarListaMotoBDAListaMotoDominio(motosBD));
         } catch (Exception excepcion) {
             Log.println(Log.ERROR, MotoRepositorioRoom.class.getName(), excepcion.getMessage());
         }

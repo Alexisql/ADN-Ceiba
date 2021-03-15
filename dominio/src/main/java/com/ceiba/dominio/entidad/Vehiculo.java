@@ -28,10 +28,6 @@ public class Vehiculo {
         return tipo;
     }
 
-    private void modificarTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public Calendar obtenerFechaIngreso() {
         return fechaIngreso;
     }
