@@ -10,7 +10,6 @@ import com.ceiba.adn.modelovista.ParqueaderoModeloVista;
 import com.ceiba.dominio.entidad.Carro;
 import com.ceiba.dominio.entidad.Vehiculo;
 
-import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
