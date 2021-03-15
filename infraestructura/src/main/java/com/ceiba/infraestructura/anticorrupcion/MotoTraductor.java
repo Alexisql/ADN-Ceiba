@@ -13,7 +13,7 @@ import java.util.List;
 public class MotoTraductor {
 
     public static Moto pasarMotoBDaMotoDominio(MotoEntidad motoEntidad) throws ParseException {
-        Moto moto = new Moto(motoEntidad.placa, motoEntidad.cilindraje);
+        Moto moto = new Moto(motoEntidad.placa, motoEntidad.tipo, motoEntidad.cilindraje);
         Calendar fechaIngreso = Calendar.getInstance();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE MMMM d HH:mm:ss z yyyy");
         fechaIngreso.setTime(formatoFecha.parse(String.valueOf(motoEntidad.fechaIngreso)));
@@ -24,6 +24,7 @@ public class MotoTraductor {
     public static MotoEntidad pasarMotoDominioAMotoBD(Moto moto) {
         MotoEntidad motoEntidad = new MotoEntidad();
         motoEntidad.modificarPlaca(moto.obtenerPlaca());
+        motoEntidad.modificarTipo(moto.obtenerTipo());
         motoEntidad.modificarCilindraje(moto.obtenerCilindraje());
         motoEntidad.modificarFechaIngreso(moto.obtenerFechaIngreso().getTime().toString());
         return motoEntidad;

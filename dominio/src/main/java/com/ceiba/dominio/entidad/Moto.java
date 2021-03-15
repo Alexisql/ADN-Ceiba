@@ -11,8 +11,8 @@ public class Moto extends Vehiculo {
     public static final short EXCEDENTE = 2000;
     public final short CANTIDAD_MAXIMA_EN_PARQUEADERO = 10;
 
-    public Moto(String placa, int cilindraje) {
-        super(placa);
+    public Moto(String placa, String tipo, int cilindraje) {
+        super(placa, tipo);
         modificarCilindraje(cilindraje);
     }
 

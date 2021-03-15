@@ -8,8 +8,8 @@ public class Carro extends Vehiculo {
     public final short VALOR_DIA_PARQUEADERO = 8000;
     public final short CANTIDAD_MAXIMA_EN_PARQUEADERO = 20;
 
-    public Carro(String placa) {
-        super(placa);
+    public Carro(String placa, String tipo) {
+        super(placa, tipo);
     }
 
     public int calcularValorTotalDeParqueadero(Calendar fechaSalida) {
