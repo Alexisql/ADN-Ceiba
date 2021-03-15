@@ -86,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
     private Vehiculo crearVehiculo(RadioButton rdMoto, String placa, int cilindraje) {
         Vehiculo vehiculo;
         if (rdMoto.isChecked()) {
-            vehiculo = new Moto(placa, "moto", cilindraje);
+            vehiculo = new Moto(placa, cilindraje);
         } else {
-            vehiculo = new Carro(placa, "carro");
+            vehiculo = new Carro(placa);
         }
         return vehiculo;
     }
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             parqueaderoModeloVista.calcularValorTotalPagarMoto(moto).observe(this, valorTotalPagar::set);
         }
         Toast.makeText(this, "Total a Pagar: " + valorTotalPagar.get(), Toast.LENGTH_SHORT).show();
-        vehiculoAdaptador.notifyDataSetChanged();
+        vistaReciclada.getAdapter().notifyDataSetChanged();
     }
 
     private void guardarVehiculo(Vehiculo vehiculo, AlertDialog dialogo) {

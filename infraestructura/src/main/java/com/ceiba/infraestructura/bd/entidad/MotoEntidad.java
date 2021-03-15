@@ -15,9 +15,6 @@ public class MotoEntidad {
     @ColumnInfo(name = "placa")
     public String placa;
 
-    @ColumnInfo(name = "tipo")
-    public String tipo;
-
     @ColumnInfo(name = "fechaIngreso")
     public String fechaIngreso;
 
@@ -26,10 +23,6 @@ public class MotoEntidad {
 
     public void modificarPlaca(String placa) {
         this.placa = placa;
-    }
-
-    public void modificarTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public void modificarFechaIngreso(String fechaIngreso) {
