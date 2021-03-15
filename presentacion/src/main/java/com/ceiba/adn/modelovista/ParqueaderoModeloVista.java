@@ -1,5 +1,6 @@
 package com.ceiba.adn.modelovista;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.hilt.lifecycle.ViewModelInject;
@@ -18,25 +19,22 @@ import java.util.List;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 
 
+@SuppressLint("StaticFieldLeak")
 public class ParqueaderoModeloVista extends ViewModel {
 
-    public MutableLiveData<List<Vehiculo>> vehiculos;
+    private MutableLiveData<List<Vehiculo>> vehiculos;
 
-    private ServicioParqueadero servicioParqueadero;
+    private final ServicioParqueadero servicioParqueadero;
 
     private MutableLiveData<String> carroGuardado;
 
-    private MutableLiveData<String> carroEliminado;
-
-    private MutableLiveData<Integer> cantidadCarros;
+    private MutableLiveData<Integer> valorPagarCarro;
 
     private MutableLiveData<String> motoGuardado;
 
-    private MutableLiveData<String> motoEliminado;
+    private MutableLiveData<Integer> valorPagarMoto;
 
-    private MutableLiveData<Integer> cantidadMotos;
-
-    private Context contexto;
+    private final Context contexto;
 
     @ViewModelInject
     public ParqueaderoModeloVista(ServicioParqueadero servicioParqueadero, @ApplicationContext Context contexto) {
@@ -67,23 +65,12 @@ public class ParqueaderoModeloVista extends ViewModel {
         return carroGuardado;
     }
 
-    public LiveData<String> eliminarCarro(Carro carro) {
-        if (carroEliminado == null)
-            carroEliminado = new MutableLiveData<>();
-        try {
-            servicioParqueadero.eliminarCarro(carro);
-            carroEliminado.setValue(contexto.getString(R.string.eliminado_exitoso));
-        } catch (Exception excepcion) {
-            carroEliminado.setValue(excepcion.getMessage());
-        }
-        return carroEliminado;
-    }
-
-    public LiveData<Integer> obtenerCantidadCarros() {
-        if (cantidadCarros == null)
-            cantidadCarros = new MutableLiveData<>();
-        cantidadCarros.setValue(servicioParqueadero.obtenerCantidadCarros());
-        return cantidadCarros;
+    public LiveData<Integer> calcularValorTotalPagarCarro(Carro carro) {
+        if (valorPagarCarro == null)
+            valorPagarCarro = new MutableLiveData<>();
+        valorPagarCarro.setValue(servicioParqueadero.calcularValorTotalPagarCarro(carro));
+        servicioParqueadero.eliminarCarro(carro);
+        return valorPagarCarro;
     }
 
     public LiveData<String> guardarMoto(Moto moto) {
@@ -98,23 +85,12 @@ public class ParqueaderoModeloVista extends ViewModel {
         return motoGuardado;
     }
 
-    public LiveData<String> eliminarMoto(Moto moto) {
-        if (motoEliminado == null)
-            motoEliminado = new MutableLiveData<>();
-        try {
-            servicioParqueadero.eliminarMoto(moto);
-            motoEliminado.setValue(contexto.getString(R.string.eliminado_exitoso));
-        } catch (Exception excepcion) {
-            motoEliminado.setValue(excepcion.getMessage());
-        }
-        return motoEliminado;
-    }
-
-    public LiveData<Integer> obtenerCantidadMotos() {
-        if (cantidadMotos == null)
-            cantidadMotos = new MutableLiveData<>();
-        cantidadMotos.setValue(servicioParqueadero.obtenerCantidadMotos());
-        return cantidadMotos;
+    public LiveData<Integer> calcularValorTotalPagarMoto(Moto moto) {
+        if (valorPagarMoto == null)
+            valorPagarMoto = new MutableLiveData<>();
+        valorPagarMoto.setValue(servicioParqueadero.calcularValorTotalPagarMoto(moto));
+        servicioParqueadero.eliminarMoto(moto);
+        return valorPagarMoto;
     }
 
 }

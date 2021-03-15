@@ -18,8 +18,8 @@ public interface CarroDao {
     @Query("SELECT * FROM entidad_carro")
     List<CarroEntidad> obtenerListaCarros();
 
-    @Delete
-    void eliminarCarro(CarroEntidad carroEntidad);
+    @Query("DELETE FROM entidad_carro WHERE placa = :placaCarro")
+    void eliminarCarro(String placaCarro);
 
     @Query("SELECT COUNT(*) FROM entidad_carro")
     byte obtenerCantidadCarros();

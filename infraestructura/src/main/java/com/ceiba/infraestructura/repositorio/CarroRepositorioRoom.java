@@ -54,7 +54,7 @@ public class CarroRepositorioRoom implements CarroRepositorio {
     public void eliminarCarro(Carro carro) {
         CarroEntidad carroEntidad = CarroTraductor.pasarCarroDominioACarroBD(carro);
         AdministradorBaseDatos.EJECUTOR_ESCRITURA_BD.execute(() -> {
-            carroDao.eliminarCarro(carroEntidad);
+            carroDao.eliminarCarro(carroEntidad.placa);
         });
     }
 
