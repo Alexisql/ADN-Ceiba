@@ -15,7 +15,7 @@ public class MotoTraductor {
     public static Moto pasarMotoBDaMotoDominio(MotoEntidad motoEntidad) throws ParseException {
         Moto moto = new Moto(motoEntidad.placa, motoEntidad.cilindraje);
         Calendar fechaIngreso = Calendar.getInstance();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE MMMM d HH:mm:ss z yyyy");
         fechaIngreso.setTime(formatoFecha.parse(String.valueOf(motoEntidad.fechaIngreso)));
         moto.modificarFechaIngreso(fechaIngreso);
         return moto;
@@ -25,11 +25,11 @@ public class MotoTraductor {
         MotoEntidad motoEntidad = new MotoEntidad();
         motoEntidad.modificarPlaca(moto.obtenerPlaca());
         motoEntidad.modificarCilindraje(moto.obtenerCilindraje());
-        motoEntidad.modificarFechaIngreso(moto.obtenerFechaIngreso().toString());
+        motoEntidad.modificarFechaIngreso(moto.obtenerFechaIngreso().getTime().toString());
         return motoEntidad;
     }
 
-    public static List<Moto> pasarListaMotoDominioAListaMotoBD(List<MotoEntidad> listaMotos) throws ParseException {
+    public static List<Moto> pasarListaMotoBDAListaMotoDominio(List<MotoEntidad> listaMotos) throws ParseException {
         List<Moto> listaMotosTemporal = new ArrayList<>();
         for (MotoEntidad motoEntidad : listaMotos) {
             listaMotosTemporal.add(pasarMotoBDaMotoDominio(motoEntidad));

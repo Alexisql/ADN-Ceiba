@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.ceiba.adn.R;
 import com.ceiba.dominio.entidad.Carro;
+import com.ceiba.dominio.entidad.Moto;
 import com.ceiba.dominio.entidad.Vehiculo;
 import com.ceiba.dominio.servicio.ServicioParqueadero;
 
@@ -28,6 +29,12 @@ public class ParqueaderoModeloVista extends ViewModel {
     private MutableLiveData<String> carroEliminado;
 
     private MutableLiveData<Integer> cantidadCarros;
+
+    private MutableLiveData<String> motoGuardado;
+
+    private MutableLiveData<String> motoEliminado;
+
+    private MutableLiveData<Integer> cantidadMotos;
 
     private Context contexto;
 
@@ -77,6 +84,37 @@ public class ParqueaderoModeloVista extends ViewModel {
             cantidadCarros = new MutableLiveData<>();
         cantidadCarros.setValue(servicioParqueadero.obtenerCantidadCarros());
         return cantidadCarros;
+    }
+
+    public LiveData<String> guardarMoto(Moto moto) {
+        if (motoGuardado == null)
+            motoGuardado = new MutableLiveData<>();
+        try {
+            servicioParqueadero.guardarMoto(moto);
+            motoGuardado.setValue(contexto.getString(R.string.guardado_exitoso));
+        } catch (Exception excepcion) {
+            motoGuardado.setValue(excepcion.getMessage());
+        }
+        return motoGuardado;
+    }
+
+    public LiveData<String> eliminarMoto(Moto moto) {
+        if (motoEliminado == null)
+            motoEliminado = new MutableLiveData<>();
+        try {
+            servicioParqueadero.eliminarMoto(moto);
+            motoEliminado.setValue(contexto.getString(R.string.eliminado_exitoso));
+        } catch (Exception excepcion) {
+            motoEliminado.setValue(excepcion.getMessage());
+        }
+        return motoEliminado;
+    }
+
+    public LiveData<Integer> obtenerCantidadMotos() {
+        if (cantidadMotos == null)
+            cantidadMotos = new MutableLiveData<>();
+        cantidadMotos.setValue(servicioParqueadero.obtenerCantidadMotos());
+        return cantidadMotos;
     }
 
 }
