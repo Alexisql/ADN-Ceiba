@@ -3,6 +3,7 @@ package com.ceiba.adn.adaptador;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,11 +45,13 @@ public class VehiculoAdaptador extends RecyclerView.Adapter<VehiculoAdaptador.Ve
         private TextView placa;
         private TextView fechaIngreso;
         private TextView cilindraje;
+        private LinearLayout contenedorCilindraje;
 
         public VehiculoViewHolder(@NonNull View vista) {
             super(vista);
             placa = vista.findViewById(R.id.placa);
             fechaIngreso = vista.findViewById(R.id.fechaIngreso);
+            contenedorCilindraje = vista.findViewById(R.id.contenedorCilindraje);
             cilindraje = vista.findViewById(R.id.cilingraje);
         }
 
@@ -57,6 +60,7 @@ public class VehiculoAdaptador extends RecyclerView.Adapter<VehiculoAdaptador.Ve
             this.fechaIngreso.setText(vehiculo.obtenerFechaIngreso().getTime().toString());
             if (vehiculo instanceof Moto) {
                 Moto moto = (Moto) vehiculo;
+                contenedorCilindraje.setVisibility(View.VISIBLE);
                 this.cilindraje.setText(String.valueOf(moto.obtenerCilindraje()));
             }
         }
