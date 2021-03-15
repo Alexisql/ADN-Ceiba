@@ -24,7 +24,6 @@ import com.ceiba.dominio.entidad.Vehiculo;
 
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -99,27 +98,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cobrarParqueadero(Vehiculo vehiculo) {
-        AtomicInteger valorTotalPagar = new AtomicInteger();
-        if (vehiculo instanceof Carro) {
-            Carro carro = (Carro) vehiculo;
-            parqueaderoModeloVista.calcularValorTotalPagarCarro(carro).observe(this, valorTotalPagar::set);
-        } else {
-            Moto moto = (Moto) vehiculo;
-            parqueaderoModeloVista.calcularValorTotalPagarMoto(moto).observe(this, valorTotalPagar::set);
-        }
-        Toast.makeText(this, "Total a Pagar: " + valorTotalPagar.get(), Toast.LENGTH_SHORT).show();
-        vistaReciclada.getAdapter().notifyDataSetChanged();
+        parqueaderoModeloVista.calcularValorTotalPagarVehiculo(vehiculo).observe(this, totalPagar -> {
+            Toast.makeText(this, "Total a Pagar: " + totalPagar, Toast.LENGTH_SHORT).show();
+            vistaReciclada.getAdapter().notifyDataSetChanged();
+        });
+
     }
 
     private void guardarVehiculo(Vehiculo vehiculo, AlertDialog dialogo) {
-        if (vehiculo instanceof Carro) {
-            Carro carro = (Carro) vehiculo;
-            parqueaderoModeloVista.guardarCarro(carro).observe(this, v -> Toast.makeText(this, v, Toast.LENGTH_SHORT).show());
-        } else {
-            Moto moto = (Moto) vehiculo;
-            parqueaderoModeloVista.guardarMoto(moto).observe(this, v -> Toast.makeText(this, v, Toast.LENGTH_SHORT).show());
-        }
-        dialogo.dismiss();
-        vehiculoAdaptador.notifyDataSetChanged();
+        parqueaderoModeloVista.guardarVehiculo(vehiculo).observe(this, vehiculoGuardado -> {
+            Toast.makeText(this, vehiculoGuardado, Toast.LENGTH_SHORT).show();
+            dialogo.dismiss();
+            vehiculoAdaptador.notifyDataSetChanged();
+        });
     }
 }

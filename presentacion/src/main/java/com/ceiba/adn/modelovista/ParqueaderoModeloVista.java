@@ -2,6 +2,7 @@ package com.ceiba.adn.modelovista;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
@@ -26,13 +27,9 @@ public class ParqueaderoModeloVista extends ViewModel {
 
     private final ServicioParqueadero servicioParqueadero;
 
-    private MutableLiveData<String> carroGuardado;
+    private MutableLiveData<Integer> totalPagar;
 
-    private MutableLiveData<Integer> valorPagarCarro;
-
-    private MutableLiveData<String> motoGuardado;
-
-    private MutableLiveData<Integer> valorPagarMoto;
+    private MutableLiveData<String> vehiculoGuardado;
 
     private final Context contexto;
 
@@ -53,44 +50,39 @@ public class ParqueaderoModeloVista extends ViewModel {
         return vehiculos;
     }
 
-    public LiveData<String> guardarCarro(Carro carro) {
-        if (carroGuardado == null)
-            carroGuardado = new MutableLiveData<>();
-        try {
-            servicioParqueadero.guardarCarro(carro);
-            carroGuardado.setValue(contexto.getString(R.string.guardado_exitoso));
-        } catch (Exception excepcion) {
-            carroGuardado.setValue(excepcion.getMessage());
+    public LiveData<Integer> calcularValorTotalPagarVehiculo(Vehiculo vehiculo) {
+        if (totalPagar == null)
+            totalPagar = new MutableLiveData<>();
+        if (vehiculo instanceof Carro) {
+            Carro carro = (Carro) vehiculo;
+            totalPagar.setValue(servicioParqueadero.calcularValorTotalPagarCarro(carro));
+            servicioParqueadero.eliminarCarro(carro);
+        } else {
+            Moto moto = (Moto) vehiculo;
+            totalPagar.setValue(servicioParqueadero.calcularValorTotalPagarMoto(moto));
+            servicioParqueadero.eliminarMoto(moto);
         }
-        return carroGuardado;
+        vehiculos.getValue().remove(vehiculo);
+        return totalPagar;
     }
 
-    public LiveData<Integer> calcularValorTotalPagarCarro(Carro carro) {
-        if (valorPagarCarro == null)
-            valorPagarCarro = new MutableLiveData<>();
-        valorPagarCarro.setValue(servicioParqueadero.calcularValorTotalPagarCarro(carro));
-        servicioParqueadero.eliminarCarro(carro);
-        return valorPagarCarro;
-    }
-
-    public LiveData<String> guardarMoto(Moto moto) {
-        if (motoGuardado == null)
-            motoGuardado = new MutableLiveData<>();
+    public LiveData<String> guardarVehiculo(Vehiculo vehiculo) {
+        if (vehiculoGuardado == null)
+            vehiculoGuardado = new MutableLiveData<>();
         try {
-            servicioParqueadero.guardarMoto(moto);
-            motoGuardado.setValue(contexto.getString(R.string.guardado_exitoso));
+            if (vehiculo instanceof Carro) {
+                Carro carro = (Carro) vehiculo;
+                servicioParqueadero.guardarCarro(carro);
+            } else {
+                Moto moto = (Moto) vehiculo;
+                servicioParqueadero.guardarMoto(moto);
+            }
+            vehiculos.getValue().add(vehiculo);
+            vehiculoGuardado.setValue(contexto.getString(R.string.guardado_exitoso));
         } catch (Exception excepcion) {
-            motoGuardado.setValue(excepcion.getMessage());
+            vehiculoGuardado.setValue(excepcion.getMessage());
         }
-        return motoGuardado;
-    }
-
-    public LiveData<Integer> calcularValorTotalPagarMoto(Moto moto) {
-        if (valorPagarMoto == null)
-            valorPagarMoto = new MutableLiveData<>();
-        valorPagarMoto.setValue(servicioParqueadero.calcularValorTotalPagarMoto(moto));
-        servicioParqueadero.eliminarMoto(moto);
-        return valorPagarMoto;
+        return vehiculoGuardado;
     }
 
 }
