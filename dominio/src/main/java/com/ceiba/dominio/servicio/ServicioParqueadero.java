@@ -40,7 +40,6 @@ public class ServicioParqueadero {
         return listaMutable;
     }
 
-
     public void guardarCarro(Carro carro) {
         byte cantidadCarros = carroRepositorio.obtenerCantidadCarros();
         int diaActual = 0;
@@ -89,12 +88,5 @@ public class ServicioParqueadero {
     public int calcularValorTotalPagarCarro(Carro carro) {
         return carro.calcularValorTotalDeParqueadero(Calendar.getInstance());
     }
-
-    public int obtenerCantidadCarros() {
-        return carroRepositorio.obtenerCantidadCarros();
-    }
-
-    public int obtenerCantidadMotos() {
-        return motoRepositorio.obtenerCantidadMotos();
-    }
+    
 }

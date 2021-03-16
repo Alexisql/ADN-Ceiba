@@ -31,8 +31,6 @@ public class ServicioParqueaderoUnitTest {
 
     private ServicioParqueadero servicioParqueadero;
 
-    private Carro carro;
-    private Moto moto;
     private String excepcionSinCupoMensaje;
 
     @Before
@@ -40,11 +38,11 @@ public class ServicioParqueaderoUnitTest {
         carroRepositorio = Mockito.mock(CarroRepositorio.class);
         motoRepositorio = Mockito.mock(MotoRepositorio.class);
         servicioParqueadero = new ServicioParqueadero(carroRepositorio, motoRepositorio);
-        carro = new Carro("AQW-5R4");
-        moto = new Moto("AQW-5R4", 650);
-        excepcionSinCupoMensaje = "No hay cupo disponible";
     }
 
+    private void iniciarExcepcion(){
+        excepcionSinCupoMensaje = "No hay cupo disponible";
+    }
 
     @Test
     public void validarPlaca_placaIniciadaEnAyElDiaViernes_exitoso() {
@@ -74,28 +72,32 @@ public class ServicioParqueaderoUnitTest {
     @Test
     public void guardarCarro_sinCupoParaIngresar_exitoso() {
         //Arrange
+        Carro carro = new Carro("AQW-5R4");
+        iniciarExcepcion();
         when(carroRepositorio.obtenerCantidadCarros()).thenReturn((byte) carro.CANTIDAD_MAXIMA_EN_PARQUEADERO);
         //Act
         try {
             servicioParqueadero.guardarCarro(carro);
             fail();
-        } catch (SinCupoExcepcion exception) {
+        } catch (SinCupoExcepcion excepcion) {
             //Assert
-            assertEquals(excepcionSinCupoMensaje, exception.getMessage());
+            assertEquals(excepcionSinCupoMensaje, excepcion.getMessage());
         }
     }
 
     @Test
     public void guardarMoto_sinCupoParaIngresar_exitoso() {
         //Arrange
+        Moto moto = new Moto("AQW-5R4", 650);
+        iniciarExcepcion();
         when(motoRepositorio.obtenerCantidadMotos()).thenReturn((byte) moto.CANTIDAD_MAXIMA_EN_PARQUEADERO);
         //Act
         try {
             servicioParqueadero.guardarMoto(moto);
             fail();
-        } catch (SinCupoExcepcion exception) {
+        } catch (SinCupoExcepcion excepcion) {
             //Assert
-            assertEquals(excepcionSinCupoMensaje, exception.getMessage());
+            assertEquals(excepcionSinCupoMensaje, excepcion.getMessage());
         }
     }
 
