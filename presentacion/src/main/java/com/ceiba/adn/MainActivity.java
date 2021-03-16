@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iniciarElementos();
-        btnIngresarVehiculo.setOnClickListener(v -> Dialogo.crearDialogoGuardarVehiculo(this).show());
+        btnIngresarVehiculo.setOnClickListener(v -> DialogoVehiculo.crearDialogoGuardarVehiculo(this).show());
         parqueaderoModeloVista.obtenerListaVehiculosMutable().observe(this, this::actualizarAdaptador);
 
     }

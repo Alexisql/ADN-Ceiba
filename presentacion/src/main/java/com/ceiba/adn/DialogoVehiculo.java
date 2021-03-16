@@ -15,7 +15,7 @@ import com.ceiba.dominio.entidad.Carro;
 import com.ceiba.dominio.entidad.Moto;
 import com.ceiba.dominio.entidad.Vehiculo;
 
-public class Dialogo {
+public class DialogoVehiculo {
 
     private static LinearLayout contenedorCilindraje;
     private static RadioButton tipoCarro;
