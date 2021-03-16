@@ -14,8 +14,6 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.when;
 
-import java.util.Calendar;
-
 import static org.junit.Assert.*;
 
 /**
@@ -52,7 +50,7 @@ public class ServicioParqueaderoUnitTest {
     public void validarPlaca_placaIniciadaEnAyElDiaViernes_exitoso() {
         //Arrange
         String placa = "ASD-J87";
-        int diaViernes = Calendar.FRIDAY;
+        int diaViernes = 5;
         boolean resultadoEsperado;
         //Act
         resultadoEsperado = servicioParqueadero.validarPlaca(placa, diaViernes);
@@ -64,7 +62,7 @@ public class ServicioParqueaderoUnitTest {
     public void validarPlaca_placaIniciadaEnAyElDiaLunes_exitoso() {
         //Arrange
         String placa = "ASD-J87";
-        int diaLunes = Calendar.MONDAY;
+        int diaLunes = 1;
         boolean resultadoEsperado;
         //Act
         resultadoEsperado = servicioParqueadero.validarPlaca(placa, diaLunes);
