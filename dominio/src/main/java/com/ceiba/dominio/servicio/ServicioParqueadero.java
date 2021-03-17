@@ -84,11 +84,11 @@ public class ServicioParqueadero {
     }
 
     public int calcularValorTotalPagarMoto(Moto moto) {
-        return moto.calcularValorTotalDeParqueadero(Calendar.getInstance());
+        return moto.calcularValorTotalDeParqueadero(Calendar.getInstance(), moto.VALOR_HORA_PARQUEADERO, moto.VALOR_DIA_PARQUEADERO, moto.obtenerCilindraje());
     }
 
     public int calcularValorTotalPagarCarro(Carro carro) {
-        return carro.calcularValorTotalDeParqueadero(Calendar.getInstance());
+        return carro.calcularValorTotalDeParqueadero(Calendar.getInstance(), carro.VALOR_HORA_PARQUEADERO, carro.VALOR_DIA_PARQUEADERO);
     }
-    
+
 }

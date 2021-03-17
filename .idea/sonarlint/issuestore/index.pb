@@ -74,5 +74,7 @@ Y
 Ppresentacion/src/main/java/com/ceiba/adn/modelovista/ParqueaderoModeloVista.java,c/4/c4d296f74b803fb51ba67936c5d51102c5e05d2f
 y
 Ipresentacion/src/main/java/com/ceiba/adn/adaptador/VehiculoAdaptador.java,c/5/c5fa7851d3fd575a7a8a8d75dbd03dc953bc8eb1
-e
-5presentacion/src/main/java/com/ceiba/adn/Dialogo.java,c/a/cadc531f53d0907314a8da4728d295bd606de004
+m
+=presentacion/src/main/java/com/ceiba/adn/DialogoVehiculo.java,9/7/97f209ee11d9876736a1384bec685cd6a168f203
+…
+Upresentacion/src/androidTest/java/com/ceiba/adn/ActividadPrincipalPruebaEspresso.java,c/5/c513cf8732a6d434f3badb1b736b356e0fd69048

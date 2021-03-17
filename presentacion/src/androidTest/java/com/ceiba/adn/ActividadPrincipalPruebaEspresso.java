@@ -30,7 +30,7 @@ public class ActividadPrincipalPruebaEspresso {
         onView(withId(R.id.tipoCarro)).perform(click());
         onView(withId(R.id.placa)).perform(typeText(placa), ViewActions.closeSoftKeyboard());
         //Assert
-        onView(withId(R.id.btn_agregar)).perform(click());
+        onView(withId(R.id.btnAgregar)).perform(click());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class ActividadPrincipalPruebaEspresso {
         onView(withId(R.id.placa)).perform(typeText(placa), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.cilindraje)).perform(typeText(cilindraje), ViewActions.closeSoftKeyboard());
         //Assert
-        onView(withId(R.id.btn_agregar)).perform(click());
+        onView(withId(R.id.btnAgregar)).perform(click());
     }
 
 }

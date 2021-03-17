@@ -36,7 +36,7 @@ public class MotoTest {
         Moto moto = new Moto("ASW-KJ8", 650);
         moto.modificarFechaIngreso(fechaIngreso);
         //Act
-        int subTotal = moto.calcularValorTotalDeParqueadero(fechaSalida);
+        int subTotal = moto.calcularValorTotalDeParqueadero(fechaSalida, moto.VALOR_HORA_PARQUEADERO, moto.VALOR_DIA_PARQUEADERO, moto.obtenerCilindraje());
         //Assert
         assertEquals(4500, subTotal);
     }
