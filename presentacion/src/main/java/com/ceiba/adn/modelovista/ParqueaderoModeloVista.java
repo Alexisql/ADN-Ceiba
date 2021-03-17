@@ -2,7 +2,9 @@ package com.ceiba.adn.modelovista;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -65,6 +67,7 @@ public class ParqueaderoModeloVista extends ViewModel {
         return totalPagar;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public LiveData<String> guardarVehiculo(Vehiculo vehiculo) {
         if (vehiculoGuardado == null)
             vehiculoGuardado = new MutableLiveData<>();
