@@ -26,7 +26,6 @@ public class DialogoVehiculo {
     private static Button btnCancelar;
     private static AlertDialog.Builder dialogo;
 
-
     public static AlertDialog crearDialogoGuardarVehiculo(Activity activity) {
         dialogo = new AlertDialog.Builder(activity);
         LayoutInflater disenio = activity.getLayoutInflater();
@@ -41,7 +40,7 @@ public class DialogoVehiculo {
         });
         btnCancelar.setOnClickListener(v -> dialogoTmp.dismiss());
         btnAgregar.setOnClickListener(v -> {
-            Vehiculo vehiculo = crearVehiculo(tipoMoto, placa.getText().toString(), Integer.parseInt(cilindraje.getText().toString()));
+            Vehiculo vehiculo = crearVehiculo(tipoMoto, placa.getText().toString(), cilindraje.getText().toString());
             guardarVehiculo(activity, vehiculo, dialogoTmp);
         });
         return dialogoTmp;
@@ -54,15 +53,15 @@ public class DialogoVehiculo {
         tipoMoto = vista.findViewById(R.id.tipoMoto);
         placa = vista.findViewById(R.id.placa);
         cilindraje = vista.findViewById(R.id.cilindraje);
-        btnAgregar = vista.findViewById(R.id.btn_agregar);
-        btnCancelar = vista.findViewById(R.id.btn_cancelar);
+        btnAgregar = vista.findViewById(R.id.btnAgregar);
+        btnCancelar = vista.findViewById(R.id.btnCancelar);
 
     }
 
-    private static Vehiculo crearVehiculo(RadioButton rdMoto, String placa, int cilindraje) {
+    private static Vehiculo crearVehiculo(RadioButton rdMoto, String placa, String cilindraje) {
         Vehiculo vehiculo;
         if (rdMoto.isChecked()) {
-            vehiculo = new Moto(placa, cilindraje);
+            vehiculo = new Moto(placa, Integer.parseInt(cilindraje));
         } else {
             vehiculo = new Carro(placa);
         }

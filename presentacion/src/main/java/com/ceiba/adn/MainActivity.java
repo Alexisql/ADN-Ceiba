@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         iniciarElementos();
         btnIngresarVehiculo.setOnClickListener(v -> DialogoVehiculo.crearDialogoGuardarVehiculo(this).show());
         parqueaderoModeloVista.obtenerListaVehiculosMutable().observe(this, this::actualizarAdaptador);
-
     }
 
     private void iniciarElementos() {
