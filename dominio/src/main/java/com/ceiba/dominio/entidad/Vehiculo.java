@@ -6,9 +6,9 @@ public class Vehiculo {
 
     private String placa;
     private Calendar fechaIngreso;
-    private final float HORA_EN_MILISEGUNDOS = 3600000;
-    protected final int LIMITE_MAXIMO_HORAS = 9;
-    protected final int CANTIDAD_HORAS_DIA = 24;
+    private static final float HORA_EN_MILISEGUNDOS = 3600000;
+    protected static final int LIMITE_MAXIMO_HORAS = 9;
+    protected static final int CANTIDAD_HORAS_DIA = 24;
 
     public Vehiculo(String placa) {
         modificarPlaca(placa);

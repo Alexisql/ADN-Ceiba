@@ -24,9 +24,9 @@ public class ServicioParqueadero {
 
     private CarroRepositorio carroRepositorio;
     private MotoRepositorio motoRepositorio;
-    private final String LETRA_INICIAL_PLACA = "A";
-    private final int DIA_LUNES = 1;
-    private final int DIA_DOMINGO = 7;
+    private static final String LETRA_INICIAL_PLACA = "A";
+    private static final int DIA_LUNES = 1;
+    private static final int DIA_DOMINGO = 7;
 
     @Inject
     public ServicioParqueadero(CarroRepositorio carroRepositorio, MotoRepositorio motoRepositorio) {
