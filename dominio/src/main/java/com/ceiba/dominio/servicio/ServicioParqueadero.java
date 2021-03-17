@@ -1,5 +1,8 @@
 package com.ceiba.dominio.servicio;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ceiba.dominio.entidad.Carro;
@@ -40,12 +43,11 @@ public class ServicioParqueadero {
         return listaMutable;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void guardarCarro(Carro carro) {
         byte cantidadCarros = carroRepositorio.obtenerCantidadCarros();
         int diaActual = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            diaActual = LocalDate.now().getDayOfWeek().getValue();
-        }
+        diaActual = LocalDate.now().getDayOfWeek().getValue();
         if (cantidadCarros == carro.CANTIDAD_MAXIMA_EN_PARQUEADERO) {
             throw new SinCupoExcepcion();
         } else if (validarPlaca(carro.obtenerPlaca(), diaActual)) {
@@ -54,12 +56,11 @@ public class ServicioParqueadero {
         carroRepositorio.guardarCarro(carro);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void guardarMoto(Moto moto) {
         byte cantidadMotos = motoRepositorio.obtenerCantidadMotos();
         int diaActual = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            diaActual = LocalDate.now().getDayOfWeek().getValue();
-        }
+        diaActual = LocalDate.now().getDayOfWeek().getValue();
         if (cantidadMotos == moto.CANTIDAD_MAXIMA_EN_PARQUEADERO) {
             throw new SinCupoExcepcion();
         } else if (validarPlaca(moto.obtenerPlaca(), diaActual)) {
