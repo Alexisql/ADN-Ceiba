@@ -20,7 +20,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class ActividadPrincipal extends AppCompatActivity {
 
     private ParqueaderoModeloVista parqueaderoModeloVista;
     private RecyclerView vistaReciclada;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iniciarElementos();
-        btnIngresarVehiculo.setOnClickListener(v -> DialogoVehiculo.crearDialogoGuardarVehiculo(this).show());
+        btnIngresarVehiculo.setOnClickListener(v -> VehiculoDialogo.crearDialogoGuardarVehiculo(this).show());
         parqueaderoModeloVista.obtenerListaVehiculosMutable().observe(this, this::actualizarAdaptador);
     }
 

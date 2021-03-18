@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ceiba.adn.MainActivity;
+import com.ceiba.adn.ActividadPrincipal;
 import com.ceiba.adn.R;
 import com.ceiba.dominio.entidad.Moto;
 import com.ceiba.dominio.entidad.Vehiculo;
@@ -74,8 +74,8 @@ public class VehiculoAdaptador extends RecyclerView.Adapter<VehiculoAdaptador.Ve
         }
 
         private void cobrarParqueadero(Vehiculo vehiculo) {
-            if (actividad instanceof MainActivity) {
-                MainActivity actividadPrincipal = (MainActivity) actividad;
+            if (actividad instanceof ActividadPrincipal) {
+                ActividadPrincipal actividadPrincipal = (ActividadPrincipal) actividad;
                 actividadPrincipal.cobrarParqueadero(vehiculo);
             }
         }

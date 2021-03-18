@@ -6,7 +6,7 @@ import com.ceiba.dominio.excepcion.PlacaNoPermitidaExcepcion;
 import com.ceiba.dominio.excepcion.SinCupoExcepcion;
 import com.ceiba.dominio.repositorio.CarroRepositorio;
 import com.ceiba.dominio.repositorio.MotoRepositorio;
-import com.ceiba.dominio.servicio.ServicioParqueadero;
+import com.ceiba.dominio.servicio.ParqueaderoServicio;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ServicioParqueaderoUnitTest {
+public class ParqueaderoServicioUnitTest {
 
     @Mock
     private CarroRepositorio carroRepositorio;
@@ -35,13 +35,13 @@ public class ServicioParqueaderoUnitTest {
     @Mock
     private MotoRepositorio motoRepositorio;
 
-    private ServicioParqueadero servicioParqueadero;
+    private ParqueaderoServicio parqueaderoServicio;
 
     @Before
     public void inicializarVariables() {
         carroRepositorio = Mockito.mock(CarroRepositorio.class);
         motoRepositorio = Mockito.mock(MotoRepositorio.class);
-        servicioParqueadero = new ServicioParqueadero(carroRepositorio, motoRepositorio);
+        parqueaderoServicio = new ParqueaderoServicio(carroRepositorio, motoRepositorio);
     }
 
     private String iniciarExcepcionSinCupo() {
@@ -63,7 +63,7 @@ public class ServicioParqueaderoUnitTest {
         int diaViernes = 5;
         boolean resultadoEsperado;
         //Act
-        resultadoEsperado = servicioParqueadero.validarPlaca(placa, diaViernes);
+        resultadoEsperado = parqueaderoServicio.validarPlaca(placa, diaViernes);
         //Asset
         assertEquals(false, resultadoEsperado);
     }
@@ -75,7 +75,7 @@ public class ServicioParqueaderoUnitTest {
         int diaLunes = 1;
         boolean resultadoEsperado;
         //Act
-        resultadoEsperado = servicioParqueadero.validarPlaca(placa, diaLunes);
+        resultadoEsperado = parqueaderoServicio.validarPlaca(placa, diaLunes);
         //Asset
         assertEquals(true, resultadoEsperado);
 
@@ -88,7 +88,7 @@ public class ServicioParqueaderoUnitTest {
         when(carroRepositorio.obtenerCantidadCarros()).thenReturn((byte) carro.CANTIDAD_MAXIMA_EN_PARQUEADERO);
         //Act
         try {
-            servicioParqueadero.guardarCarro(carro);
+            parqueaderoServicio.guardarCarro(carro);
         } catch (SinCupoExcepcion excepcion) {
             //Assert
             assertEquals(iniciarExcepcionSinCupo(), excepcion.getMessage());
@@ -104,7 +104,7 @@ public class ServicioParqueaderoUnitTest {
         when(carroRepositorio.obtenerCantidadCarros()).thenReturn((byte) 10);
         //Act
         try {
-            servicioParqueadero.guardarCarro(carro);
+            parqueaderoServicio.guardarCarro(carro);
         } catch (PlacaNoPermitidaExcepcion excepcion) {
             //Assert
             assertEquals(excepcionPlacaNoPermitida, excepcion.getMessage());
@@ -118,7 +118,7 @@ public class ServicioParqueaderoUnitTest {
         when(motoRepositorio.obtenerCantidadMotos()).thenReturn((byte) moto.CANTIDAD_MAXIMA_EN_PARQUEADERO);
         //Act
         try {
-            servicioParqueadero.guardarMoto(moto);
+            parqueaderoServicio.guardarMoto(moto);
         } catch (SinCupoExcepcion excepcion) {
             //Assert
             assertEquals(iniciarExcepcionSinCupo(), excepcion.getMessage());
@@ -134,7 +134,7 @@ public class ServicioParqueaderoUnitTest {
         when(motoRepositorio.obtenerCantidadMotos()).thenReturn((byte) 5);
         //Act
         try {
-            servicioParqueadero.guardarMoto(moto);
+            parqueaderoServicio.guardarMoto(moto);
         } catch (PlacaNoPermitidaExcepcion excepcion) {
             //Assert
             assertEquals(excepcionPlacaNoPermitida, excepcion.getMessage());

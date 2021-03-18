@@ -1,6 +1,9 @@
-package com.ceiba.adn;
+package com.ceiba.adn.pagina;
 
-public class PaginaDialogoVehiculo extends EspressoPruebaBase {
+import com.ceiba.adn.PruebaBase;
+import com.ceiba.adn.R;
+
+public class DialogoVehiculoPagina extends PruebaBase {
 
     public static int obtenerRecursoTipoCarro() {
         return R.id.tipoCarro;
